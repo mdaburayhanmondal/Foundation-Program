@@ -1,4 +1,8 @@
-export default function Counter({ count, setCount }) {
+import { use } from 'react';
+import { CounterContext } from '../providers/counter.provider.jsx';
+
+export default function Counter() {
+  const { count, setCount } = use(CounterContext);
   return (
     <div className="flex border border-red-500 my-8 mx-4 p-2 items-center justify-between">
       <button

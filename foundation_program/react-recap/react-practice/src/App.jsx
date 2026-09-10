@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import './App.css';
 // import Card from './components/Card';
-import Counter from './components/Counter';
-import CounterDisplay from './components/CounterDisplay';
+import Counter from './components/Counter.jsx';
+import CounterDisplay from './components/CounterDisplay.jsx';
+import CounterProvider from './providers/counter.provider.jsx';
 
 function App() {
   // const [name, setName] = useState('');
@@ -20,8 +20,6 @@ function App() {
   //   setName('');
   //   setAge('');
   // };
-
-  const [count, setCount] = useState(0);
 
   return (
     // <div className="my-8 mx-4 space-y-8">
@@ -57,11 +55,11 @@ function App() {
     //       />
     //     ))}
     // </div>
-    <>
+    <CounterProvider>
       <h1>Parent</h1>
-      <Counter count={count} setCount={setCount} />
-      <CounterDisplay count={count} />
-    </>
+      <Counter />
+      <CounterDisplay />
+    </CounterProvider>
   );
 }
 
