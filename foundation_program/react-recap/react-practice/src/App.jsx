@@ -58,6 +58,7 @@ function App() {
     //     ))}
     // </div>
     <>
+      <h1>Parent</h1>
       <Counter count={count} setCount={setCount} />
       <CounterDisplay count={count} />
     </>
