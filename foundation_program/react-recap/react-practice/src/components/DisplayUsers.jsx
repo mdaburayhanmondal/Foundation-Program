@@ -7,16 +7,21 @@ export default function DisplayUsers() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((res) => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
         if (!res.ok) {
           throw new Error(res.message || 'Something went wrong!');
         }
-        return res.json();
-      })
-      .then((data) => setUsers(data))
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
+        const data = await res.json();
+        setUsers(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers();
   }, []);
 
   return (
