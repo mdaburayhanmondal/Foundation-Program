@@ -1,13 +1,34 @@
 import { X } from 'lucide-react';
 import { useState } from 'react';
+import { getGeoLocation } from '../services/getGeoLocation';
+import { useNavigate } from 'react-router';
 
 export default function LocationPicker({ onClose }) {
-  const [city, setCity] = useState('');
+  const navigate = useNavigate();
 
-  const onHandleSubmit = (e) => {
+  const [city, setCity] = useState('');
+  const [error, setError] = useState('');
+
+  const goToPage = (location) => {
+    navigate('/weather', { state: { location } });
+  };
+
+  const onHandleSubmit = async (e) => {
     e.preventDefault();
     const enteredCity = city.trim().toLowerCase();
-    console.log(enteredCity);
+    if (!enteredCity) {
+      setError('Please enter city name.');
+      return;
+    }
+    try {
+      const location = await getGeoLocation(enteredCity);
+      if (!location) {
+        setError('Geocoding request failed!');
+      }
+      goToPage(location);
+    } catch (err) {
+      setError(err);
+    }
     setCity('');
   };
 
@@ -15,10 +36,10 @@ export default function LocationPicker({ onClose }) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        console.log(latitude, longitude);
+        goToPage({ name: 'Your location', lat: latitude, lon: longitude });
       },
       (err) => {
-        console.log(err);
+        setError(err);
       },
       {
         timeout: 5000,
@@ -67,6 +88,11 @@ export default function LocationPicker({ onClose }) {
             Use My Location
           </button>
         </div>
+        {error && (
+          <p className="text-red-600 font-medium text-md text-center">
+            {error}
+          </p>
+        )}
       </div>
     </div>
   );
