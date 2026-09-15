@@ -197,7 +197,7 @@ export const getWeather = async (place) => {
     temperature: Math.round(now.temperature_2m),
     feelsLike: Math.round(now.apparent_temperature),
     humidity: now.relative_humidity_2m,
-    windSpeed: now.wind_speed_10m,
+    windSpeed: Math.round(now.wind_speed_10m),
     condition: weather.condition,
     conditionLabel: weather.label,
     description: weather.description,
