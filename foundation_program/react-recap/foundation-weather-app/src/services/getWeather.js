@@ -9,7 +9,6 @@ export const getWeather = async (place) => {
   if (!now) {
     throw new Error('Failed to get weather details!');
   }
-  console.log(now);
   return {
     location: name,
     temperature: Math.round(now.temperature_2m),
