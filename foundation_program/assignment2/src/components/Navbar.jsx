@@ -7,7 +7,7 @@ export default function Navbar() {
       <button>
         <Link to={'/'} className="flex items-center gap-x-1">
           <FilmIcon />
-          <big className="font-bold">Movie Explorer</big>
+          <big className="font-bold">MovieExplorer</big>
         </Link>
       </button>
 
