@@ -9,7 +9,7 @@ export default function MainLayout() {
         <Navbar />
       </header>
 
-      <main className="min-h-screen flex justify-center items-center">
+      <main className="min-h-[80vh] flex flex-col m-2 items-center justify-center">
         <Outlet />
       </main>
 
