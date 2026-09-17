@@ -4,10 +4,12 @@ import { Link } from 'react-router';
 export default function Navbar() {
   return (
     <nav className="px-4 py-2 flex justify-between border m-2 rounded-lg">
-      <div className="flex items-center gap-x-1">
-        <FilmIcon />
-        <big className="font-bold">Movie Explorer</big>
-      </div>
+      <button>
+        <Link to={'/'} className="flex items-center gap-x-1">
+          <FilmIcon />
+          <big className="font-bold">Movie Explorer</big>
+        </Link>
+      </button>
 
       <div className="flex gap-x-4 items-center">
         <button>
