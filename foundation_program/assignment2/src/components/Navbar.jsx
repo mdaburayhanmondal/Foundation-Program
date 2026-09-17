@@ -1,4 +1,5 @@
 import { FilmIcon } from 'lucide-react';
+import { Link } from 'react-router';
 
 export default function Navbar() {
   return (
@@ -10,10 +11,10 @@ export default function Navbar() {
 
       <div className="flex gap-x-4 items-center">
         <button>
-          <a href="/">Home</a>
+          <Link to={'/'}>Home</Link>
         </button>
         <button>
-          <a href="/movies">List</a>
+          <Link to={'/movies'}>List</Link>
         </button>
       </div>
     </nav>
